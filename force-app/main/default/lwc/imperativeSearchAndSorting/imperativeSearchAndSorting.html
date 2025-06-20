@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Opportunity Search & Sort">
+        <div class="slds-p-around_medium">
+            <lightning-input
+                label="Search by Name"
+                value={searchKey}
+                onchange={handleInputChange}>
+            </lightning-input>
+
+            <lightning-button
+                label="Search"
+                variant="brand"
+                class="slds-m-top_small"
+                onclick={handleSearch}>
+            </lightning-button>
+        </div>
+
+        <div class="slds-p-around_medium">
+            <lightning-datatable
+                key-field="Id"
+                data={sortedData}
+                columns={columns}
+                sorted-by={sortedBy}
+                sorted-direction={sortedDirection}
+                onsort={handleSort}
+                hide-checkbox-column="true">
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>
