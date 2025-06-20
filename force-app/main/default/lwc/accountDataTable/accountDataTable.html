@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Account Search & Sort">
+        <div class="slds-p-around_medium">
+            <lightning-input
+                label="Search by Account Name"
+                value={searchKey}
+                onchange={handleInputChange}>
+            </lightning-input>
+
+            <lightning-button
+                label="Search"
+                variant="brand"
+                class="slds-m-top_small"
+                onclick={handleSearch}>
+            </lightning-button>
+        </div>
+
+        <div class="slds-p-around_medium">
+            <lightning-datatable
+                key-field="Id"
+                data={sortedData}
+                columns={columns}
+                sorted-by={sortedBy}
+                sorted-direction={sortedDirection}
+                onsort={handleSort}
+                onrowaction={handleRowAction}
+                hide-checkbox-column="true">
+            </lightning-datatable>
+        </div>
+
+        <template if:true={showContacts}>
+            <lightning-card title="Related Contacts ({contactCount})">
+                <lightning-datatable
+                    key-field="Id"
+                    data={contacts}
+                    columns={contactColumns}
+                    hide-checkbox-column="true"
+                    class="slds-p-around_medium">
+                </lightning-datatable>
+            </lightning-card>
+        </template>
+    </lightning-card>
+</template>
