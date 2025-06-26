@@ -1,0 +1,13 @@
+<template>
+    <lightning-card>
+        <template if:true ={accountDetails.data}>
+            <template for:each={accountDetails.data} for:item="acc">
+                <h2 key={accountDetails.key}>{acc.Name}</h2>
+                <h2 key={accountDetails.key}>{acc.Phone}</h2>
+            </template>
+        </template>
+        <template if:true={accountDetails.error}>
+            {accountDetails.error}
+        </template>
+    </lightning-card>
+</template>
