@@ -5,4 +5,10 @@
         <div>Experience :{employee.exp}</div>
         <div>status : {EmployeeValue}</div>
     </lightning-card>
+    
+    <lightning-card>
+        <p>This is two way binding</p>
+        <div>My Full name is : {FullName}</div>
+        <lightning-input label="FullName" type ="text" onchange={nameChangeHandler}></lightning-input>
+    </lightning-card>
 </template>
