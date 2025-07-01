@@ -21,7 +21,7 @@ public with sharing class PrimaryContactHandler {
           {
               if(oldMap != null)
               {
-                  Contact oldCon = oldMap.get(newCon.AccountId);
+                  Contact oldCon = oldMap.get(newCon.Id);
                   
                   if(oldCon == null || oldCon.PrimaryContact__c != newCon.PrimaryContact__c || oldCon.AccountId != newCon.AccountId)
                   {

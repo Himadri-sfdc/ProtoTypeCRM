@@ -1,6 +1,6 @@
 public with sharing class AccountDataTableClass {
    
-     @AuraEnabled(cacheable=false)
+     @AuraEnabled(cacheable=true)
     public static List<Account> fetchAccounts(String searchKey) {
         String key = '%' + searchKey + '%';
         if (String.isBlank(searchKey)) {
@@ -15,7 +15,7 @@ public with sharing class AccountDataTableClass {
         }
     }
 
-    @AuraEnabled(cacheable=false)
+    @AuraEnabled(cacheable=true)
     public static List<Contact> getContactsByAccount(Id accountId) {
         return [
             SELECT Id, FirstName, LastName, Email, Phone 
