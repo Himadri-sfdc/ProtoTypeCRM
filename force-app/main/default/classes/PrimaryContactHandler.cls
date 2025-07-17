@@ -1,18 +1,8 @@
-public with sharing class PrimaryContactHandler {
-   
-   public static void beforeInsert(List<Contact> conList)
-    {
-        validatePrimaryContact(conList,null);
-    }
-    public static void beforeUpdate(List<Contact> conList,Map<Id,Contact> oldMap)
-    {
-        validatePrimaryContact(conList,oldMap);
-    }
-    
+public with sharing class PrimaryContactHandler{
 
-  public static void validatePrimaryContact(List<Contact> conList,Map<Id,Contact> oldMap)
-  {
-      Set<Id> accId = new Set<Id>();
+     public static void validPrimaryContact(List<Contact> conList,Map<Id,Contact> oldMap)
+     {
+        Set<Id> accId = new Set<Id>();
       Set<Id> accWithAccountId = new Set<Id>();
       
       for(Contact newCon : conList)
@@ -51,6 +41,5 @@ public with sharing class PrimaryContactHandler {
               }
           }
       }
-  }
-   
+     }
 }

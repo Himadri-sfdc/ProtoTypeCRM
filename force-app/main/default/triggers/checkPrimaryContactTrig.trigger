@@ -1,11 +1,7 @@
 trigger checkPrimaryContactTrig on Contact (before insert,before update) {
 
-    if(trigger.isBefore && trigger.isInsert)
+    if(trigger.isbefore && (trigger.isInsert || trigger.isUpdate))
     {
-        PrimaryContactHandler.beforeInsert(trigger.new);
-    }
-    else if(trigger.isBefore && trigger.isUpdate)
-    {
-        PrimaryContactHandler.beforeUpdate(trigger.new,trigger.oldMap);
+        PrimaryContactHandler.validPrimaryContact(trigger.new,trigger.oldMap);
     }
 }
