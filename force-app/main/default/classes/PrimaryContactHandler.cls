@@ -2,7 +2,7 @@ public with sharing class PrimaryContactHandler{
 
      public static void validPrimaryContact(List<Contact> conList,Map<Id,Contact> oldMap)
      {
-        Set<Id> accId = new Set<Id>();
+      Set<Id> accId = new Set<Id>();
       Set<Id> accWithAccountId = new Set<Id>();
       
       for(Contact newCon : conList)
@@ -26,10 +26,12 @@ public with sharing class PrimaryContactHandler{
       }
       if(!accId.isEmpty())
       {
-          for(Contact con : [SELECT Id,AccountId,PrimaryContact__c FROM Contact WHERE AccountId IN : accId AND PrimaryContact__c = TRUE])
-          {
-              accWithAccountId.add(con.AccountId);
-          }
+         List<Contact> conPri = [SELECT Id,AccountId,PrimaryContact__c FROM Contact WHERE AccountId IN : accId AND PrimaryContact__c = TRUE];
+
+         for(Contact con : conPri)
+         {
+            accWithAccountId.add(newCon.AccountId);
+         }
       }
       for(Contact newCon : conList)
       {
