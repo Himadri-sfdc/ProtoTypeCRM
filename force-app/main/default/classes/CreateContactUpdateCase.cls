@@ -50,7 +50,8 @@ public with sharing class CreateContactUpdateCase {
             {
                 if(String.isNotBlank(newCase.SuppliedEmail__c) && conMap.containskey(newCase.SuppliedEmail__c))
                 {
-                    newCase.ContactId = conMap.get(newCase.SuppliedEmail__c);
+                    newCase.ContactId = conMap.get(newCase.SuppliedEmail__c); 
+                    System.debug('new commit');
                 }
             }
         }
