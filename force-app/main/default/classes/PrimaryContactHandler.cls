@@ -2,7 +2,7 @@ public with sharing class PrimaryContactHandler{
 
      public static void validPrimaryContact(List<Contact> conList,Map<Id,Contact> oldMap)
      {
-        Set<Id> accId = new Set<Id>();
+      Set<Id> accId = new Set<Id>();
       Set<Id> accWithAccountId = new Set<Id>();
       
       for(Contact newCon : conList)
