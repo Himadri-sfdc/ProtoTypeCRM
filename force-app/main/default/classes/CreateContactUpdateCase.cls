@@ -17,7 +17,7 @@ public with sharing class CreateContactUpdateCase {
         }
         if(!setEmail.isEmpty())
         {
-            List<Contact> conList = [SELECT Id,Email,AccountId FROM Contact WHERE Email IN : setEmail];
+            List<Contact> conList = [SELECT Id,Email FROM Contact WHERE Email IN : setEmail];
 
             for(Contact cons : conList)
             {
@@ -51,7 +51,7 @@ public with sharing class CreateContactUpdateCase {
                 if(String.isNotBlank(newCase.SuppliedEmail__c) && conMap.containskey(newCase.SuppliedEmail__c))
                 {
                     newCase.ContactId = conMap.get(newCase.SuppliedEmail__c); 
-                    System.debug('new commit');
+                    
                 }
             }
         }
