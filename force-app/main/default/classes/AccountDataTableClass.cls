@@ -2,26 +2,21 @@ public with sharing class AccountDataTableClass {
    
      @AuraEnabled(cacheable=true)
     public static List<Account> fetchAccounts(String searchKey) {
-        String key = '%' + searchKey + '%';
-        if (String.isBlank(searchKey)) {
-            return [SELECT Id, Name, Industry, AnnualRevenue FROM Account WHERE AnnualRevenue != NULL LIMIT 10];
-        } else {
-            return [
-                SELECT Id, Name, Industry, AnnualRevenue 
-                FROM Account 
-                WHERE Name LIKE :key 
-                LIMIT 10
-            ];
-        }
-    }
-
-    @AuraEnabled(cacheable=true)
-    public static List<Contact> getContactsByAccount(Id accountId) {
+        searchKey = '%' + searchKey + '%';
         return [
-            SELECT Id, FirstName, LastName, Email, Phone 
-            FROM Contact 
-            WHERE AccountId = :accountId 
+            SELECT Id, Name, Industry, Phone
+            FROM Account
+            WHERE Name LIKE :searchKey
             LIMIT 10
         ];
     }
-}
+
+    @AuraEnabled(cacheable=true)
+    public static List<Contact> fetchContacts(Id accountId) {
+        return [
+            SELECT Id, FirstName, LastName, Email, Phone, AccountId
+            FROM Contact
+            WHERE AccountId = :accountId
+        ];
+    }
+}-

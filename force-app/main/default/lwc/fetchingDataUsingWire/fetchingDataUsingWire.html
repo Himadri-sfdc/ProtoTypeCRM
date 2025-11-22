@@ -1,0 +1,15 @@
+<template>
+     <template if:true={accounts.data}>
+        <lightning-card title="Account List">
+            <template for:each={accounts.data} for:item="acc">
+                <p key={acc.Id}>
+                    <b>{acc.Name}</b> — {acc.Industry} — {acc.Phone} — {acc.Type}
+                </p>
+            </template>
+        </lightning-card>
+    </template>
+
+    <template if:true={accounts.error}>
+        <p style="color:red;">Error: {accounts.error.body.message}</p>
+    </template>
+</template>

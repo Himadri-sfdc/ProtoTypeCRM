@@ -27,5 +27,6 @@
   "javascript.preferences.jsxAttributeCompletionStyle": "none",
   "typescript.preferences.jsxAttributeCompletionStyle": "none",
   "xml.completion.autoCloseRemovesContent": false,
-  "xml.completion.autoCloseTags": false
+  "xml.completion.autoCloseTags": false,
+  "xml.preferences.showSchemaDocumentationType": "none"
 }
