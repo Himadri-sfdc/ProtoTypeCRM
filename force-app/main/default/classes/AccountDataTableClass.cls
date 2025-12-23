@@ -19,4 +19,4 @@ public with sharing class AccountDataTableClass {
             WHERE AccountId = :accountId
         ];
     }
-}-
+};
