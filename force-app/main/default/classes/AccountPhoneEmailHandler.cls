@@ -14,9 +14,9 @@ public with sharing class AccountPhoneEmailHnadler {
                 setPhone.add(acc.Phone);
             }
         }
-        for(Account acList : [SELECT Id,Phone FROM Account WHERE Phone IN : setPhone])
+        for(Account acc : [SELECT Id,Phone FROM Account WHERE Phone IN : setPhone])
         {
-            mapToEmail.put(aclist.Phone,aclist.Id);
+            mapToEmail.put(acc.Phone,acc.Id);
         }
         for(Account acc : accList)
         {
