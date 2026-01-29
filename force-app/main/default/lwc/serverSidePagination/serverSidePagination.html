@@ -1,0 +1,12 @@
+<template>
+    <lightning-datatable
+    key-field="Id"
+    data={data}
+    columns={columns}>
+</lightning-datatable>
+
+<lightning-button label="Previous" onclick={handlePrev} disabled={disablePrev}></lightning-button>
+<lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
+
+<p>Page {pageNumber} of {totalPages} | Total Records: {totalRecords}</p>
+</template>
