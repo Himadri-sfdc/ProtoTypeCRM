@@ -1,37 +1,37 @@
+import { LightningElement, wire } from 'lwc';
+import getAccountList from '@salesforce/apex/AccountContactSearchCtrl.getAccountList';
+import getRelatedContacts from '@salesforce/apex/AccountContactSearchCtrl.getRelatedContacts';
 
-import { LightningElement, wire, track } from 'lwc';
-import searchContacts from '@salesforce/apex/DataTableWithWireClassParc.searchContacts';
-import { refreshApex } from '@salesforce/apex'; 
+const ACC_COLUMNS = [{ label: 'Account Name', fieldName: 'Name' }, { label: 'Industry', fieldName: 'Industry' }];
+const CON_COLUMNS = [{ label: 'First Name', fieldName: 'FirstName' }, { label: 'Last Name', fieldName: 'LastName' }, { label: 'Email', fieldName: 'Email', type: 'email' }];
 
-const COLUMNS = [
-    { label: 'Name', fieldName: 'Name' },
-    { label: 'Email', fieldName: 'Email', type: 'email' },
-    { label: 'Phone', fieldName: 'Phone', type: 'phone' }
-];
-
-export default class DataTableWire extends LightningElement {
-
-    columns = COLUMNS;
-    @track searchKey = '';
+export default class DualDatatables extends LightningElement {
+    accountColumns = ACC_COLUMNS;
+    contactColumns = CON_COLUMNS;
+    
+    searchKey = '';
+    selectedAccountId = '';
+    accounts;
     contacts;
-    wiredResult; 
 
-    handleSearch(event) {
+    // Reacts whenever searchKey changes
+    @wire(getAccountList, { searchKey: '$searchKey' })
+    wiredAccounts({ data }) {
+        if (data) this.accounts = data;
+    }
+
+    // Reacts whenever selectedAccountId changes
+    @wire(getRelatedContacts, { accountId: '$selectedAccountId' })
+    wiredContacts({ data }) {
+        this.contacts = data ? data : [];
+    }
+
+    handleSearchChange(event) {
         this.searchKey = event.target.value;
     }
 
-    handleRefresh() {
-        refreshApex(this.wiredResult);
-    }
-
-    @wire(searchContacts, { searchKey: '$searchKey' })
-    wiredContacts(result) {        
-        this.wiredResult = result; 
-
-        if (result.data) {
-            this.contacts = result.data;
-        } else if (result.error) {
-            console.error(result.error);
-        }
+    handleRowSelection(event) {
+        const selectedRows = event.detail.selectedRows;
+        this.selectedAccountId = selectedRows.length > 0 ? selectedRows[0].Id : '';
     }
 }

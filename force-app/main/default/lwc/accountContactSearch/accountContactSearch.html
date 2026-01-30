@@ -1,0 +1,44 @@
+<template>
+    <!-- SEARCH -->
+    <lightning-card title="Account Search">
+        <div class="slds-p-around_medium slds-grid slds-gutters">
+            <div class="slds-col slds-size_8-of-12">
+                <lightning-input
+                    label="Account Name"
+                    placeholder="Enter account name"
+                    onchange={handleInput}>
+                </lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_4-of-12 slds-align_absolute-center">
+                <lightning-button
+                    label="Search"
+                    variant="brand"
+                    onclick={handleSearch}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <template if:true={accounts.length}>
+            <lightning-datatable
+                key-field="Id"
+                data={accounts}
+                columns={accountColumns}
+                max-row-selection="1"
+                onrowselection={handleRowSelection}>
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+
+    <!-- CONTACTS -->
+    <template if:true={contacts.length}>
+        <lightning-card title="Related Contacts" class="slds-m-top_medium">
+            <lightning-datatable
+                key-field="Id"
+                data={contacts}
+                columns={contactColumns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </lightning-card>
+    </template>
+</template>
