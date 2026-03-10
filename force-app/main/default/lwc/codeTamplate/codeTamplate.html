@@ -1,0 +1,14 @@
+
+<template>
+    <lightning-card title="Account & Contacts">
+        <lightning-datatable 
+            key-field="Id" data={accounts} columns={accCols} 
+            max-row-selection="1" onrowselection={handleSelect} onrowaction={handleAction}>
+        </lightning-datatable>
+
+        <template if:true={contacts}>
+            <lightning-datatable key-field="Id" data={contacts} columns={conCols} hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>
