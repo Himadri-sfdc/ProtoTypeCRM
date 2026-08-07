@@ -5,6 +5,7 @@ public with sharing class AccountPhoneEmailHnadler {
     public static void PreventDuplicateEmail(List<Account> accList)
     {
         Set<String> setPhone = new Set<String>();
+
         Map<String,Id> mapToEmail = new Map<String,Id>();
 
         for(Account acc : acclist)
